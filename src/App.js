@@ -24,7 +24,6 @@ function App() {
   const loadBlockchainData = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     setProvider(provider);
-
     const network = await provider.getNetwork();
 
     const realEstate = new ethers.Contract(
@@ -33,7 +32,7 @@ function App() {
       provider
     );
     const totalSupply = await realEstate.totalSupply();
-
+    // console.log(totalSupply);
     const homes = [];
 
     for (var i = 1; i <= totalSupply; i++) {
@@ -51,11 +50,12 @@ function App() {
     );
     setEscrow(escrow);
 
-    window.ethereum.on("accountsChanged", async () => {
+    provider.on("accountsChanged", async () => {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       const account = ethers.utils.getAddress(accounts[0]);
+      console.warn(account);
       setAccount(account);
     });
   };
