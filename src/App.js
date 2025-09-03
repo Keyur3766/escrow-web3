@@ -31,8 +31,8 @@ function App() {
       RealEstate,
       provider
     );
+    
     const totalSupply = await realEstate.totalSupply();
-    // console.log(totalSupply);
     const homes = [];
 
     for (var i = 1; i <= totalSupply; i++) {
