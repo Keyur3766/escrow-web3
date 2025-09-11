@@ -46,7 +46,7 @@ contract Escrow {
 
     // listing functionality
     function list(
-        uint256 _nftId,
+        uint256 _nftId, 
         address _buyer,
         uint256 _purchasePrice,
         uint256 _escrowAmount 

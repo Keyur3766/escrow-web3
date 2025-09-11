@@ -18,12 +18,11 @@ const Home = ({ home, provider,account, escrow, togglePop }) => {
   const fetchDetails = async () => {
     // -- Buyer
 
-    const buyer = await escrow.buyer(home.id);
+    const buyer = await escrow.buyer(home.id);;
     setBuyer(buyer);
 
     const hasBought = await escrow.approval(home.id, buyer);
     setHasBought(hasBought);
-
     // -- Seller
 
     const seller = await escrow.seller();
@@ -95,10 +94,10 @@ const sellHandler = async () => {
 }
 
 
-const buyHandler = async() => {
+  const buyHandler = async () => {
     const escrowAmount = await escrow.escrowAmount(home.id);
     const signer = await provider.getSigner();
-
+    
     // Buyer deposits earnest
     let transaction = await escrow.connect(signer).depositEarnest(home.id, {value: escrowAmount});
     await transaction.wait();
