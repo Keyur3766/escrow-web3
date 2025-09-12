@@ -132,34 +132,48 @@ useEffect(()=> {
           <h2>{home.attributes[0].value} ETH</h2>
 
           {owner ? (
-                        <div className='home__owned'>
-                            Owned by {owner.slice(0, 6) + '...' + owner.slice(38, 42)}
-                        </div>
-                    ) : (
-                        <div>
-                            {(account === inspector) ? (
-                                <button className='home__buy' onClick={inspectHandler} disabled={hasInspected}>
-                                    Approve Inspection
-                                </button>
-                            ) : (account === lender) ? (
-                                <button className='home__buy' onClick={lendHandler} disabled={hasLended}>
-                                    Approve & Lend
-                                </button>
-                            ) : (account === seller) ? (
-                                <button className='home__buy' onClick={sellHandler} disabled={hasSold}>
-                                    Approve & Sell
-                                </button>
-                            ) : (
-                                <button className='home__buy' onClick={buyHandler} disabled={hasBought}>
-                                    Buy
-                                </button>
-                            )}
+            <div className="home__owned">
+              Owned by {owner.slice(0, 6) + "..." + owner.slice(38, 42)}
+            </div>
+          ) : (
+            <div>
+              {account === inspector ? (
+                <button
+                  className="home__buy"
+                  onClick={inspectHandler}
+                  disabled={hasInspected}
+                >
+                  Approve Inspection
+                </button>
+              ) : account === lender ? (
+                <button
+                  className="home__buy"
+                  onClick={lendHandler}
+                  disabled={hasLended}
+                >
+                  Approve & Lend
+                </button>
+              ) : account === seller ? (
+                <button
+                  className="home__buy"
+                  onClick={sellHandler}
+                  disabled={hasSold}
+                >
+                  Approve & Sell
+                </button>
+              ) : (
+                <button
+                  className="home__buy"
+                  onClick={buyHandler}
+                  disabled={hasBought}
+                >
+                  Buy
+                </button>
+              )}
 
-                            <button className='home__contact'>
-                                Contact agent
-                            </button>
-                        </div>
-                    )}
+              <button className="home__contact">Contact agent</button>
+            </div>
+          )}
 
           <hr />
 
