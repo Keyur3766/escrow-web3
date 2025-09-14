@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import close from "../assets/close.svg";
 
-const Home = ({ home, provider,account, escrow, togglePop }) => {
+const Home = ({ home, provider,account, escrow, togglePop, realEstate }) => {
   const [hasBought, setHasBought] = useState(false);
   const [hasLended, setHasLended] = useState(false);
   const [hasInspected, setHasInspected] = useState(false);
@@ -49,8 +49,10 @@ const Home = ({ home, provider,account, escrow, togglePop }) => {
   };
 
   const fetchOwner = async () => {
-    if (await escrow.isListed(home.id)) return
+    const currentOwner = await realEstate.ownerOf(home.id);
+    console.log(currentOwner);
 
+    if (await escrow.isListed(home.id)) return
     const owner = await escrow.buyer(home.id)
     setOwner(owner)
 };

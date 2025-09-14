@@ -7,6 +7,8 @@ interface IERC721 {
         address _to,
         uint256 _id
     ) external;
+
+    function ownerOf(uint256 tokenId) external view returns (address);
 }
 
 contract Escrow {
@@ -57,6 +59,10 @@ contract Escrow {
         purchasePrice[_nftId] = _purchasePrice;
         escrowAmount[_nftId] = _escrowAmount;
         buyer[_nftId] = _buyer;
+    }
+
+    function getOwner(uint256 nftId) public view returns (address) {
+        return IERC721(nftAddress).ownerOf(nftId);
     }
 
     // Put the money under contract (Only buyer can do this - payable)

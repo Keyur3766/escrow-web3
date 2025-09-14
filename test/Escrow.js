@@ -37,6 +37,8 @@ describe('Escrow', () => {
         // List Property
         transaction = await escrow.connect(seller).list(1, buyer.address, tokens(10),tokens(5));
         await transaction.wait();
+
+        
         
     })
 
@@ -63,7 +65,7 @@ describe('Escrow', () => {
     })
 
     describe('listing', async() => {
-        it('Updates as listing', async()=> {
+        it('Updates as listing', async () => {
             const result = await escrow.isListed(1);
             expect(result).to.be.equal(true);
 

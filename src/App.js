@@ -17,6 +17,7 @@ function App() {
   const [account, setAccount] = useState(null);
   const [provider, setProvider] = useState(null);
   const [escrow, setEscrow] = useState(null);
+  const [realEstate, setRealEstate] = useState(null);
   const [homes, setHomes] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [home, setHome] = useState(null);
@@ -31,6 +32,7 @@ function App() {
       RealEstate,
       provider
     );
+    setRealEstate(realEstate);
     
     const totalSupply = await realEstate.totalSupply();
     const homes = [];
@@ -95,7 +97,7 @@ function App() {
             </div>
           ))}
         </div>
-        {toggle && <Home home={home} account={account} provider={provider} escrow={escrow} togglePop={togglePop}/>}
+        {toggle && <Home home={home} account={account} provider={provider} escrow={escrow} realEstate={realEstate} togglePop={togglePop}/>}
       </div>
     </div>
   );
