@@ -26,7 +26,7 @@ async function main() {
   console.log("seller address: ", seller.address);
   console.log("buyer address: ", buyer.address);
   console.log("inspector address: ", inspector.address);
-  console.log("lender address: ", inspector.address);
+  console.log("lender address: ", lender.address);
 
   
   for (let i = 0; i < 3; i++) {

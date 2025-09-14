@@ -49,9 +49,6 @@ const Home = ({ home, provider,account, escrow, togglePop, realEstate }) => {
   };
 
   const fetchOwner = async () => {
-    const currentOwner = await realEstate.ownerOf(home.id);
-    console.log(currentOwner);
-
     if (await escrow.isListed(home.id)) return
     const owner = await escrow.buyer(home.id)
     setOwner(owner)
@@ -95,18 +92,26 @@ const sellHandler = async () => {
     setHasSold(true)
 }
 
+  const tokens = (n) => {
+      return ethers.utils.parseUnits(n.toString(), 'ether')
+  }
 
   const buyHandler = async () => {
     const escrowAmount = await escrow.escrowAmount(home.id);
     const signer = await provider.getSigner();
     
+    console.log(signer.address);
     // Buyer deposits earnest
     let transaction = await escrow.connect(signer).depositEarnest(home.id, {value: escrowAmount});
     await transaction.wait();
 
+    console.log("reaching deposit earnest");
+
     // Buyer approves the transaction
     transaction = await escrow.connect(signer).approveSale(home.id);
     await transaction.wait();
+
+    console.log("reaching sell approval");
 
     setHasBought(true);
 };
